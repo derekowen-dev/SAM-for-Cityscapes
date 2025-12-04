@@ -9,7 +9,7 @@ RUN 0: box-prompt zero-shot SAM baseline
         - building:     0.6944
         - person:       0.6114
         - car:          0.7374
-    -                               mIoU:0.7192
+    -                               mIoU: 0.7192
 
 
 RUN 1: SAM-based Cityscapes-tuned semantic head

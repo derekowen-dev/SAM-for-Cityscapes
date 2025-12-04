@@ -1,0 +1,13 @@
+# SAM checkpoint
+sam_vit_h_4b8939.pth
+
+# Cityscapes data
+gtFine/
+leftImg8bit/
+
+# Upstream SAM repo
+segment-anything/
+
+# Model outputs / artifacts
+out_models*/
+out_examples*/
