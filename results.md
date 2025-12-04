@@ -35,9 +35,9 @@ RUN 2: SAM-based Cityscapes-tuned semantic head
         - max val samples:      500 (all)
         
     - per-class IoU
-        - road:         0.
-        - sidewalk:     0.
-        - building:     0.
-        - person:       0.
-        - car:          0.
-    -                               mIoU: 0.
+        - road:         0.9256
+        - sidewalk:     0.6990
+        - building:     0.8535
+        - person:       0.6555
+        - car:          0.8731
+    -                               mIoU: 0.8013
