@@ -8,9 +8,8 @@ import torch.nn.functional as F
 from segment_anything import sam_model_registry, SamPredictor, SamAutomaticMaskGenerator
 from cityscapes_dataset import CityscapesFineDataset
 from zero_shot_utils_box_prompts import sample_boxes_from_gt
+from config import PROJECT_ROOT, DATA_ROOT, SAM_CHECKPOINT, HEAD_WEIGHTS, OUT_MODELS_DIR
 
-PROJECT_ROOT = r"C:\Users\dowen\Desktop\csci 490dpl final project"
-CHECKPOINT_PATH = os.path.join(PROJECT_ROOT, "sam_vit_h_4b8939.pth")
 HEAD_PATH = os.path.join(PROJECT_ROOT, "out_models_cityscapes_head", "sam_cityscapes_head.pth")
 
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
@@ -112,7 +111,7 @@ def main():
 
     gt_color = colorize_labels(gt_np)
 
-    sam_model = sam_model_registry["vit_h"](checkpoint=CHECKPOINT_PATH)
+    sam_model = sam_model_registry["vit_h"](checkpoint=SAM_CHECKPOINT)
     sam_model.to(device=DEVICE)
     sam_model.eval()
 

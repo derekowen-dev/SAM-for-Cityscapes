@@ -11,3 +11,5 @@ segment-anything/
 # Model outputs / artifacts
 out_models*/
 out_examples*/
+
+__pycache__

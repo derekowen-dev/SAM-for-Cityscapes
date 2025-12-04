@@ -13,9 +13,8 @@ from zero_shot_utils_box_prompts import (
     update_iou_accumulators,
     compute_iou_from_accumulators,
 )
+from config import DATA_ROOT, SAM_CHECKPOINT, HEAD_WEIGHTS, OUT_MODELS_DIR
 
-ROOT = r"C:\Users\dowen\Desktop\csci 490dpl final project"
-CHECKPOINT_PATH = r"C:\Users\dowen\Desktop\csci 490dpl final project\sam_vit_h_4b8939.pth"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 CITYSCAPES_TO_TRAIN = {
@@ -117,8 +116,8 @@ def compute_val_miou(sam, head, val_loader):
 
 
 def main():
-    full_train_ds = CityscapesFineDataset(ROOT, split="train")
-    full_val_ds = CityscapesFineDataset(ROOT, split="val")
+    full_train_ds = CityscapesFineDataset(DATA_ROOT, split="train")
+    full_val_ds = CityscapesFineDataset(DATA_ROOT, split="val")
 
     train_indices = list(range(len(full_train_ds)))[:MAX_TRAIN_SAMPLES]
     val_indices = list(range(len(full_val_ds)))[:MAX_VAL_SAMPLES]
@@ -129,7 +128,7 @@ def main():
     train_loader = DataLoader(train_ds, batch_size=BATCH_SIZE, shuffle=True, num_workers=0)
     val_loader = DataLoader(val_ds, batch_size=BATCH_SIZE, shuffle=False, num_workers=0)
 
-    sam = build_frozen_sam(CHECKPOINT_PATH, model_type="vit_h", device=DEVICE)
+    sam = build_frozen_sam(SAM_CHECKPOINT, model_type="vit_h", device=DEVICE)
     head = SamCityscapesHead(in_channels=256, num_classes=NUM_CLASSES).to(DEVICE)
 
     optimizer = torch.optim.Adam(head.parameters(), lr=LR)

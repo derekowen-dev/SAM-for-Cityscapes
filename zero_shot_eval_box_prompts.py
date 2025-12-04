@@ -10,9 +10,8 @@ from zero_shot_utils_box_prompts import (
     update_iou_accumulators,
     compute_iou_from_accumulators,
 )
+from config import DATA_ROOT, SAM_CHECKPOINT
 
-ROOT = r"C:\Users\dowen\Desktop\csci 490dpl final project"
-CHECKPOINT_PATH = r"C:\Users\dowen\Desktop\csci 490dpl final project\sam_vit_h_4b8939.pth"
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 
@@ -24,9 +23,9 @@ def build_sam_predictor(checkpoint_path, model_type="vit_h", device="cuda"):
 
 
 def run_box_zero_shot():
-    ds = CityscapesFineDataset(ROOT, split="val")
+    ds = CityscapesFineDataset(DATA_ROOT, split="val")
     loader = DataLoader(ds, batch_size=1, shuffle=False)
-    predictor = build_sam_predictor(CHECKPOINT_PATH, model_type="vit_h", device=DEVICE)
+    predictor = build_sam_predictor(SAM_CHECKPOINT, model_type="vit_h", device=DEVICE)
     inter, union = init_iou_accumulators()
 
     for idx, (_, gt_tensor, img_path) in enumerate(loader):
