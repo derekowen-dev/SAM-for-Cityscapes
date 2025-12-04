@@ -24,9 +24,7 @@ pip install -e .
 cd ..
 
 python zero_shot_eval_box_prompts.py    -- box-prompt zero-shot SAM evaluation
-python save_examples_box_prompts.py     -- generates example collages
 
-python train_sam_cityscapes_head.py     -- train SAM-based Cityscapes-tuned semantic head
-python save_examples_head.py            -- generates example collages
+python train_sam_cityscapes_head.py     -- train SAM-based Cityscapes-tuned semantic head (generates sam_cityscapes_head.pth in out_models_cityscapes_head)
 
-python save_examples_main.py            -- generates 5 random collages of all steps (6 images)
+python save_examples_main.py            -- generates 5 random collages of all steps (6 images) (requires sam_cityscapes_head.pth in out_models_cityscapes_head)
